@@ -6,18 +6,19 @@ name: e2e-tests-compat
 #
 # Dispatch-only — it builds an extra (release) source tree and is meaningful only
 # on demand (e.g. before cutting a release), not on every PR.
-on:
-  workflow_dispatch:
-    inputs:
-      release_ref:
-        description: "Git tag/ref for the release peer (default: latest tag)"
-        required: false
-        default: ""
-      run_long_running_tests:
-        description: "Run ONLY the long-running soak/coverage tests (@Tag(\"longrunning\")); skips the normal suite"
-        type: boolean
-        default: false
-
+# Triggers intentionally disabled for Argus-OSS-Security.
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       release_ref:
+#         description: "Git tag/ref for the release peer (default: latest tag)"
+#         required: false
+#         default: ""
+#       run_long_running_tests:
+#         description: "Run ONLY the long-running soak/coverage tests (@Tag(\"longrunning\")); skips the normal suite"
+#         type: boolean
+#         default: false
+# 
 jobs:
   e2e-tests-compat:
     name: Run e2e suite with one release-version peer

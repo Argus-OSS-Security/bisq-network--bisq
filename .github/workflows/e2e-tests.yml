@@ -1,38 +1,39 @@
 name: e2e-tests
 
-on:
-  workflow_dispatch:
-    inputs:
-      run_long_running_tests:
-        description: "Run ONLY the long-running soak/coverage tests (@Tag(\"longrunning\")); skips the normal suite"
-        type: boolean
-        default: false
-  pull_request:
-    paths:
-      # Modules whose source is directly compiled into the e2e stack.
-      - "apitest/**"
-      - "core/**"
-      - "daemon/**"
-      - "cli/**"
-      - "seednode/**"
-      - "proto/**"
-      # Transitive deps of core/daemon/cli — a regression here lands in the stack
-      # without touching the modules above.
-      - "common/**"
-      - "p2p/**"
-      - "persistence/**"
-      - "assets/**"
-      - "bridge/**"
-      - "bitcoind/**"
-      # Build/version plumbing — any change here can swap dep versions or compile
-      # behavior under us.
-      - "build-logic/**"
-      - "build.gradle"
-      - "settings.gradle"
-      - "gradle.properties"
-      - "gradle/libs.versions.toml"
-      - ".github/workflows/e2e-tests.yml"
-
+# Triggers intentionally disabled for Argus-OSS-Security.
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       run_long_running_tests:
+#         description: "Run ONLY the long-running soak/coverage tests (@Tag(\"longrunning\")); skips the normal suite"
+#         type: boolean
+#         default: false
+#   pull_request:
+#     paths:
+#       # Modules whose source is directly compiled into the e2e stack.
+#       - "apitest/**"
+#       - "core/**"
+#       - "daemon/**"
+#       - "cli/**"
+#       - "seednode/**"
+#       - "proto/**"
+#       # Transitive deps of core/daemon/cli — a regression here lands in the stack
+#       # without touching the modules above.
+#       - "common/**"
+#       - "p2p/**"
+#       - "persistence/**"
+#       - "assets/**"
+#       - "bridge/**"
+#       - "bitcoind/**"
+#       # Build/version plumbing — any change here can swap dep versions or compile
+#       # behavior under us.
+#       - "build-logic/**"
+#       - "build.gradle"
+#       - "settings.gradle"
+#       - "gradle.properties"
+#       - "gradle/libs.versions.toml"
+#       - ".github/workflows/e2e-tests.yml"
+# 
 jobs:
   e2e-tests:
     name: Run end-to-end DAO + trade test suite
